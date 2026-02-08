@@ -562,7 +562,7 @@ class UserProfileViewSet(viewsets. ViewSet):
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def check_username_aviability(request):
+def check_username_availability(request):
 
     username = request.query_params.get('username')
     if not username:
@@ -596,3 +596,7 @@ def check_email_availability(request):
     return Response({
         'available': available
     })
+
+
+
+

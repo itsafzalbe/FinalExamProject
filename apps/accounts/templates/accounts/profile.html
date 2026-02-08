@@ -1,0 +1,126 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Profile - Personal Finance Tracker{% endblock %}
+
+{% block content %}
+<div class="logo">
+    <div class="logo-icon">👤</div>
+    <h1>My Profile</h1>
+</div>
+
+<h2>{{ user.get_full_name|default:user.username }}</h2>
+<p class="subtitle">{{ user.email }}</p>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" id="profileForm">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            value="{{ user.username }}"
+            required
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input 
+            type="text" 
+            id="first_name" 
+            name="first_name" 
+            value="{{ user.first_name }}"
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="last_name">Last Name</label>
+        <input 
+            type="text" 
+            id="last_name" 
+            name="last_name" 
+            value="{{ user.last_name }}"
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="phone_number">Phone Number</label>
+        <input 
+            type="tel" 
+            id="phone_number" 
+            name="phone_number" 
+            value="{{ user.phone_number }}"
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="date_of_birth">Date of Birth</label>
+        <input 
+            type="date" 
+            id="date_of_birth" 
+            name="date_of_birth" 
+            value="{{ user.date_of_birth|date:'Y-m-d' }}"
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="default_currency">Default Currency</label>
+        <select id="default_currency" name="default_currency">
+            <option value="UZS" {% if user.default_currency == 'UZS' %}selected{% endif %}>UZS - Uzbekistan Sum</option>
+            <option value="USD" {% if user.default_currency == 'USD' %}selected{% endif %}>USD - US Dollar</option>
+            <option value="EUR" {% if user.default_currency == 'EUR' %}selected{% endif %}>EUR - Euro</option>
+            <option value="RUB" {% if user.default_currency == 'RUB' %}selected{% endif %}>RUB - Russian Ruble</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="bio">Bio</label>
+        <textarea 
+            id="bio" 
+            name="bio" 
+            rows="3" 
+            style="width: 100%; padding: 12px; border: 2px solid #e1e8ed; border-radius: 10px; font-family: inherit; resize: vertical;"
+        >{{ user.bio }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Save Changes
+    </button>
+</form>
+
+<div class="divider">
+    <span>Account Actions</span>
+</div>
+
+<a href="{% url 'accounts:change_password' %}" class="btn btn-secondary" style="display: block; text-align: center; text-decoration: none; margin-bottom: 10px;">
+    Change Password
+</a>
+
+<a href="{% url 'accounts:logout' %}" class="btn btn-secondary" style="display: block; text-align: center; text-decoration: none; background: #fff3cd; color: #856404; border: 1px solid #ffeaa7;">
+    Log Out
+</a>
+
+<p class="link-text" style="margin-top: 30px;">
+    <a href="{% url 'accounts:delete_account' %}" style="color: #dc3545;">Delete Account</a>
+</p>
+
+<script>
+    const form = document.getElementById('profileForm');
+
+    form.addEventListener('submit', function(e) {
+        if (!confirm('Save changes to your profile?')) {
+            e.preventDefault();
+        }
+    });
+</script>
+{% endblock %}

@@ -18,12 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
+from apps.dashboard.views import dashboard_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/auth/', include('apps.accounts.urls')),
+    # path('api/auth/', include('apps.accounts.urls')),
     # path('api/transactions/', include('apps.transactions.urls')),
     # path('api/cards/', include('cards.urls')),
+    path('accounts/', include('apps.accounts.urls')),
+    path('', dashboard_view, name='dashboard'),
 ]
 
 if settings.DEBUG:

@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'apps.accounts.apps.AccountsConfig',
     'apps.budgets.apps.BudgetsConfig',
     'apps.cards.apps.CardsConfig',
+
+    'apps.dashboard.appsDashboardConfig',
+
+
     'apps.transactions.apps.TransactionsConfig',
     'django_filters',
     'rest_framework',
@@ -135,7 +139,7 @@ SIMPLE_JWT = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES := BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,6 +150,23 @@ TEMPLATES = [
         },
     },
 ]
+
+
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'error',
+}
+
+# Login URL
+LOGIN_URL = 'apps/accounts/login/'
+LOGIN_REDIRECT_URL = 'dashboard'
+
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
