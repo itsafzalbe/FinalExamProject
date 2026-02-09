@@ -11,9 +11,8 @@ class BudgetFilter(django_filters.FilterSet):
     currency_code = django_filters.CharFilter(field_name = 'currency__code', lookup_expr = 'iexact')
     
     class Meta:
-        model=Budget
-        fields ={
-            'is_active': ['exact'],
+        model = Budget
+        fields = {
             'period': ['exact'],
             'category': ['exact'],
             'currency': ['exact'],

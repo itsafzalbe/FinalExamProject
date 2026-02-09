@@ -9,16 +9,16 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category 
-        fields = ['id', 'name', 'type', 'icon', 'color', 
+        fields = ['id', 'name', 'type', 'icon', 
             'parent_category', 'is_default', 'full_name',
             'is_active', 'created_at']
-        read_only_fileds= ['created_at']
+        read_only_fields= ['created_at']
 
 
 class CategoryCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name', 'type', 'icon', 'color', 'parent_category', 'is_active']
+        fields = ['name', 'type', 'icon', 'parent_category', 'is_active']
 
     def validate_parent_category(self, value):
         if value:

@@ -35,18 +35,7 @@ class Category(models.Model):
         ('📦', 'Other'),
     ]
 
-    COLOR_CHOICES = [
-        ('#FF6B6B', 'Red'),
-        ('#4ECDC4', 'Teal'),
-        ('#45B7D1', 'Blue'),
-        ('#FFA07A', 'Orange'),
-        ('#98D8C8', 'Green'),
-        ('#F7DC6F', 'Yellow'),
-        ('#BB8FCE', 'Purple'),
-        ('#85929E', 'Gray'),
-        ('#E74C3C', 'Dark Red'),
-        ('#3498DB', 'Sky Blue'),
-    ]
+    
 
     name = models.CharField(max_length=100, help_text="Category name (e.g., Food, Salary, Transport)")
     type = models.CharField(max_length=10, choices=CATEGORY_TYPE_CHOICES, help_text="Income or Expense")

@@ -18,15 +18,25 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
-from apps.dashboard.views import dashboard_view
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+    SpectacularRedocView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api/auth/', include('apps.accounts.urls')),
-    # path('api/transactions/', include('apps.transactions.urls')),
-    # path('api/cards/', include('cards.urls')),
-    path('accounts/', include('apps.accounts.urls')),
-    path('', dashboard_view, name='dashboard'),
+    path('api/auth/', include('apps.accounts.urls')),
+    path('api/transactions/', include('apps.transactions.urls')),
+    path('api/cards/', include('apps.cards.urls')),
+    path('api/budgets/', include('apps.budgets.urls')),
+
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
+
+    
 ]
 
 if settings.DEBUG:
