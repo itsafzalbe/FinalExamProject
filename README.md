@@ -166,8 +166,9 @@ Authorization: Bearer <access_token>
 
 ##  API Documentation (Swagger)
 Once the server is running, access Swagger UI at:
-[text](http://127.0.0.1:8000/api/swagger/)
-
+```bash
+http://127.0.0.1:8000/api/swagger/
+```
 
 
 
