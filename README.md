@@ -161,52 +161,58 @@ Add the token to request headers:
 
 ```http
 Authorization: Bearer <access_token>
+```
 
 
-
- API Documentation (Swagger)
+##  API Documentation (Swagger)
 Once the server is running, access Swagger UI at:
 [text](http://127.0.0.1:8000/api/swagger/)
 
 
 
 
-Local Setup
+##  Local Setup
+```bash
 git clone https://github.com/yourusername/finance-api.git
 cd finance-api
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
 
 
 
 
-Environment variables
+##  Environment variables
 Create .env file:
 
+```bash
 DEBUG=True
 SECRET_KEY=your-secret-key
 ALLOWED_HOSTS=127.0.0.1,localhost
 
 DB_ENGINE=django.db.backends.sqlite3
 DB_NAME=db.sqlite3
+```
 
 
+##  Run migrations & server
 
-Run migrations & server
+```bash
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
+```
 
 
 
-Database
+##  Database
 	•	Default database: SQLite
 	•	Designed to allow easy switch to PostgreSQL via environment variables
 
 
 
- Notes
+##  Notes
 	•	This is a backend-only project (no frontend UI)
 	•	Root URL / intentionally returns 404
 	•	All functionality is exposed via REST APIs
