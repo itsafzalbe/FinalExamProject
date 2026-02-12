@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'apps.accounts.apps.AccountsConfig',
     'apps.budgets.apps.BudgetsConfig',
     'apps.cards.apps.CardsConfig',
+    'apps.transfers.apps.TransfersConfig',
+    'apps.support.apps.SupportConfig',
     
     'apps.transactions.apps.TransactionsConfig',
     'django_filters',
