@@ -22,16 +22,16 @@ from .filters import BudgetFilter
 class BudgetViewSet(viewsets.ModelViewSet):
     """
     Endpoints:
-    - GET /api/budgets/ - List user's budgets
-    - POST /api/budgets/ - Create new budget
-    - GET /api/budgets/{id}/ - Get specific budget
-    - PUT/PATCH /api/budgets/{id}/ - Update budget
-    - DELETE /api/budgets/{id}/ - Delete budget
-    - GET /api/budgets/{id}/progress/ - Get budget progress details
-    - GET /api/budgets/active/ - Get only active budgets
-    - GET /api/budgets/overview/ - Get budgets overview
-    - GET /api/budgets/alerts/ - Get budgets needing attention
-    - POST /api/budgets/{id}/toggle_active/ - Activate/deactivate budget
+     GET /api/budgets/ - list user budgets
+     POST /api/budgets/ -create
+     GET /api/budgets/{id}/ - get a budget by its id
+     PUT/PATCH /api/budgets/{id}/ update the budget
+     DELETE /api/budgets/{id}/ - delete the budget
+     GET /api/budgets/{id}/progress/ -get budget progress
+     GET /api/budgets/active/ get the active budgets only
+     GET /api/budgets/overview/ -get the budgets overview
+     GET /api/budgets/alerts/ - get the budgets alerts
+     POST /api/budgets/{id}/toggle_active/ - change the active budget
     """
 
     permission_classes = [IsAuthenticated]
